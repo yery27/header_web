@@ -1,0 +1,205 @@
+<!-- wp:html -->
+<!-- 1) Font Awesome (hamburguesa y “X”) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-pap+VkT+Eo4Ml+vZxk4f/21s1yK/CQU+Wn03bZIrTnY0vklg+h+o+/J7qGsvafKk0uaOeMUCe1Ll4nUyJoEx+A=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<!-- 2) Estructura HTML -->
+<nav class="responsive-nav">
+  <button class="nav-toggle" aria-label="Abrir menú">
+    <i class="fa fa-bars"></i>
+  </button>
+  <div class="nav-panel">
+    <button class="nav-close" aria-label="Cerrar menú">
+      <i class="fa fa-times"></i>
+    </button>
+    <!-- Logo de la empresa -->
+    <div class="nav-logo-container">
+      <img
+        src="https://mejorandotupc.es/wp-content/uploads/2025/04/cropped-ChatGPT_Image_21_abr_2025__19_27_58-removebg-preview.webp"
+        alt="Mejorando tu PC"
+        class="nav-logo"
+      />
+    </div>
+    <ul class="nav-menu">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/?page_id=13">Windows</a></li>
+      <li><a href="/?page_id=15">Ubuntu</a></li>
+      <li><a href="/?page_id=820">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 3) Estilos -->
+<style>
+  /* — Base — */
+  .responsive-nav {
+    position: relative;
+    z-index: 1000;
+    background: transparent;
+  }
+  .nav-toggle {
+    display: none;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 1.2em;      /* hamburguesa un poco más pequeña */
+    color: #ffffff !important;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  .nav-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 75%;
+    max-width: 300px;
+    height: 100%;
+    background: #0a0a0a;
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+    z-index: 1000;
+    padding-top: 4rem;     /* separa logo de la parte superior */
+  }
+  .responsive-nav.open .nav-panel {
+    transform: translateX(0);
+  }
+  .nav-close {
+    position: absolute;
+    top: 2rem;             /* baja un poco la “X” */
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .nav-logo-container {
+    text-align: center;
+    margin: 0.5rem 0;      /* menos margen abajo */
+    padding: 0;
+  }
+  .nav-logo {
+    max-width: 60px !important;  /* logo pequeño */
+    height: auto !important;
+  }
+  .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0 1.5rem;
+  }
+  .nav-menu li {
+    margin: 1rem 0;
+  }
+  .nav-menu li.current-menu-item,
+  .nav-menu li.current-menu-item a {
+    background: none !important; /* quita fondo lila */
+  }
+  .nav-menu a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: color .3s ease;
+  }
+  .nav-menu a:hover {
+    color: #E95420;
+  }
+
+  /* — Móvil: muestra solo toggle — */
+  @media (max-width: 767px) {
+    .nav-toggle {
+      display: block;
+    }
+  }
+
+  /* — Desktop: convierte el panel en menú horizontal y oculta controles móviles — */
+  @media (min-width: 768px) {
+    .nav-toggle,
+    .nav-close {
+      display: none !important;
+    }
+    .nav-panel {
+      display: block !important;
+      position: static !important;
+      transform: none !important;
+      width: auto !important;
+      height: auto !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
+    .nav-logo-container {
+      display: none !important;
+    }
+    .nav-panel .nav-menu {
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 1.5em;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+    }
+    .nav-panel .nav-menu li {
+      margin: 0 !important;
+    }
+  }
+
+  /* — Oculta offcanvas nativo del tema — */
+  .rs-offcanvas-area,
+  .right_menu_toggle {
+    display: none !important;
+  }
+
+  /* — Oculta tu toggle de hamburguesa al abrir tu menú — */
+  .responsive-nav.open .nav-toggle {
+    display: none !important;
+  }
+  
+  /* Reduce el espacio superior del panel */
+.nav-panel {
+  padding-top: 2rem !important;   /* antes 4rem; ajústalo a tu gusto */
+}
+
+/* Opcional: si quieres separar aún más el logo */
+.nav-logo-container {
+  margin-top: 1rem !important;    /* añade un poco de margen extra encima del logo */
+}
+
+/* Solo escritorio: quita margen superior del nav */
+  @media (min-width: 768px) {
+    .responsive-nav {
+      margin-top: 0 !important;
+    }
+    
+    
+    
+</style>
+
+<!-- 4) JavaScript toggle + click fuera -->
+<script>
+  (function(){
+    const nav      = document.querySelector('.responsive-nav');
+    const btnOpen  = nav.querySelector('.nav-toggle');
+    const btnClose = nav.querySelector('.nav-close');
+    const panel    = nav.querySelector('.nav-panel');
+
+    btnOpen.addEventListener('click',  () => nav.classList.toggle('open'));
+    btnClose.addEventListener('click', () => nav.classList.remove('open'));
+    document.addEventListener('click', e => {
+      if (nav.classList.contains('open')
+          && !panel.contains(e.target)
+          && !btnOpen.contains(e.target)) {
+        nav.classList.remove('open');
+      }
+    });
+  })();
+</script>
+<!-- /wp:html -->
