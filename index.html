@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Sidebar Header</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #111;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .burger {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: block;
+    }
+
+    /* Sidebar (móvil) */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100%;
+      background-color: #1e1e1e;
+      color: white;
+      padding: 2rem 1.5rem;
+      transition: left 0.3s ease;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar .top {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sidebar .logo {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .sidebar nav a {
+      display: block;
+      padding: 0.8rem 0;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #444;
+    }
+
+    .sidebar nav a:hover {
+      color: #E95420;
+    }
+
+    .sidebar .bottom {
+      font-size: 0.9rem;
+      border-top: 1px solid #444;
+      padding-top: 1rem;
+    }
+
+    .sidebar .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Menú horizontal para escritorio */
+    .desktop-menu {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .burger {
+        display: none;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .desktop-menu {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .desktop-menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .desktop-menu a:hover {
+        color: #E95420;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">MySite</div>
+
+    <!-- Menú horizontal (visible solo en escritorio) -->
+    <nav class="desktop-menu">
+      <a href="#">Inicio</a>
+      <a href="#">Sobre Nosotros</a>
+      <a href="#">Servicios</a>
+      <a href="#">Contacto</a>
+    </nav>
+
+    <!-- Botón hamburguesa (visible solo en móvil) -->
+    <button class="burger" id="openMenu" aria-label="Abrir menú">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <!-- Sidebar (móvil) -->
+  <aside class="sidebar" id="sidebar">
+    <button class="close-btn" id="closeMenu" aria-label="Cerrar menú">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <div class="top">
+      <div class="logo">MySite</div>
+      <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Sobre Nosotros</a>
+        <a href="#">Servicios</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
+
+    <div class="bottom">
+      <p>+34 612 345 678</p>
+      <p>contacto@mysite.com</p>
+    </div>
+  </aside>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const openBtn = document.getElementById('openMenu');
+    const closeBtn = document.getElementById('closeMenu');
+
+    openBtn.addEventListener('click', () => {
+      sidebar.classList.add('open');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (sidebar.classList.contains('open') &&
+          !sidebar.contains(e.target) &&
+          !openBtn.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+  </script>
+
+</body>
+</html>
