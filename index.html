@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Header Component</title>
+    <link rel="stylesheet" href="header.css">
+    <!-- Example page basic styles -->
+    <style>
+        body { margin: 0; font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; padding-top: 72px; /* matches header height */ }
+        .hero { padding: 100px 20px; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.25rem; color: #94a3b8; }
+        /* Prevent scroll when mobile menu is open */
+        body.no-scroll { overflow: hidden; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ==================== HEADER COMPONENT START ==================== -->
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Logo area -->
+            <a href="#" class="header-logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 22h20L12 2z" fill="#3b82f6"/>
+                </svg>
+                <span>AwesomeApp</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="header-nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+                
+                <!-- Mobile Actions (visible only on mobile) -->
+                <div class="mobile-actions">
+                    <a href="#login" class="btn btn-outline" style="width: 100%; text-align: center; margin-bottom: 12px;">Log in</a>
+                    <a href="#signup" class="btn btn-primary" style="width: 100%; text-align: center;">Sign up</a>
+                </div>
+            </nav>
+
+            <!-- Desktop Actions -->
+            <div class="header-actions desktop-only">
+                <a href="#login" class="btn btn-outline">Log in</a>
+                <a href="#signup" class="btn btn-primary">Sign up</a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+    <!-- ==================== HEADER COMPONENT END ==================== -->
+
+    <main class="hero">
+        <h1>Easily Implement this Header</h1>
+        <p>A beautiful, fully responsive header component for your projects.</p>
+        <p style="margin-top: 40px; font-size: 1rem;">Resize the window to see the mobile menu in action!</p>
+    </main>
+
+    <script src="header.js"></script>
+</body>
+</html>
