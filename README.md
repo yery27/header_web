@@ -2,6 +2,8 @@
 
 A modern, highly responsive, and easy-to-implement header component for any web project. Built with plain HTML, CSS, and Vanilla JavaScript (no framework required). Designed with a modern dark theme and glassmorphism effects.
 
+![Header Preview](./header_preview.webp)
+
 ## Features
 - 📱 **Fully Responsive:** Beautiful mobile-first hamburger menu functionality perfectly adapted for all screen sizes.
 - 🎨 **Modern Aesthetics:** Features glassmorphism effects (backdrop blur) and sleek UI transitions.
